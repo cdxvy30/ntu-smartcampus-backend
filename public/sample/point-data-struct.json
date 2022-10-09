@@ -1,0 +1,8 @@
+[{ "name": "Code", "type": "string" },
+  { "name": "Tree Name", "type": "string" },
+  { "name": "Tree Type", "type": "string" },
+  { "name": "Tree Crown Area", "type": "double" },
+  { "name": "Tree Height", "type": "double" },
+  { "name": "X", "type": "double" },
+  { "name": "Y", "type": "double" },
+  { "name": "TCO2", "type": "double" }]

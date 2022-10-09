@@ -1,0 +1,4 @@
+[{ "name": "流編", "type": "int" },
+  { "name": "財產別名", "type": "string" },
+  { "name": "建物編號", "type": "string" },
+  { "name": "執照", "type": "string" }]

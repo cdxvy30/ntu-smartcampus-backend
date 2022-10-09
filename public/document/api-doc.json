@@ -1,0 +1,1739 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a sample web server for Smart-City project.",
+    "version": "1.0.0",
+    "title": "Smart-City Backend API Doc"
+  },
+  "tags": [
+    {
+      "name": "Shape-File",
+      "description": "Everything about shapefiles"
+    },
+    {
+      "name": "Shape-Data",
+      "description": "Everything about shapefile data"
+    },
+    {
+      "name": "Point-Data",
+      "description": "Everything about point data"
+    },
+    {
+      "name": "Common-File",
+      "description": "Everything about common files"
+    },
+    {
+      "name": "Layer",
+      "description": "Everything about layer"
+    },
+    {
+      "name": "Admin",
+      "description": "Everything about admin"
+    },
+    {
+      "name": "User",
+      "description": "Everything about user"
+    },
+    {
+      "name": "Backup",
+      "description": "Everything about backup"
+    },
+    {
+      "name": "Publish",
+      "description": "Everything about publish"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/api/shp/file/create": {
+      "post": {
+        "tags": [
+          "Shape-File"
+        ],
+        "operationId": "postShpFile",
+        "consumes": [
+          "application/json",
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "keyPropertyName",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "isPublic",
+            "in": "formData",
+            "required": true,
+            "type": "boolean"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "shapefile",
+            "in": "formData",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/shp/file/list": {
+      "get": {
+        "tags": [
+          "Shape-File"
+        ],
+        "operationId": "getShpFileList",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/shp/file/key/{fileName}/{version}": {
+      "get": {
+        "tags": [
+          "Shape-File"
+        ],
+        "operationId": "getShpFileKey",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "selectedProperty",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/shp/file/read/{fileName}/{version}": {
+      "get": {
+        "tags": [
+          "Shape-File"
+        ],
+        "operationId": "getShpFile",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/shp/file/download/{fileName}/{version}": {
+      "get": {
+        "tags": [
+          "Shape-File"
+        ],
+        "operationId": "downloadShpFile",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/shp/file/remove/{fileName}/{version}": {
+      "delete": {
+        "tags": [
+          "Shape-File"
+        ],
+        "operationId": "removeShpFile",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/shp/data/create": {
+      "post": {
+        "tags": [
+          "Shape-Data"
+        ],
+        "operationId": "postShpData",
+        "consumes": [
+          "application/json",
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "keyPropertyName",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "dataStruct",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "isPublic",
+            "in": "formData",
+            "required": true,
+            "type": "boolean"
+          },
+          {
+            "name": "bindingShpName",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "data",
+            "in": "formData",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/shp/data/list": {
+      "get": {
+        "tags": [
+          "Shape-Data"
+        ],
+        "operationId": "getShpDataList",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/shp/data/read/{fileName}/{version}": {
+      "get": {
+        "tags": [
+          "Shape-Data"
+        ],
+        "operationId": "getShpData",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/shp/data/download/{fileName}/{version}": {
+      "get": {
+        "tags": [
+          "Shape-Data"
+        ],
+        "operationId": "downloadShpData",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/shp/data/remove/{fileName}/{version}": {
+      "delete": {
+        "tags": [
+          "Shape-Data"
+        ],
+        "operationId": "removeShpData",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/point/data/create": {
+      "post": {
+        "tags": [
+          "Point-Data"
+        ],
+        "operationId": "postPointData",
+        "consumes": [
+          "application/json",
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "keyPropertyName",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "xPropertyName",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "yPropertyName",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "dataStruct",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "isPublic",
+            "in": "formData",
+            "required": true,
+            "type": "boolean"
+          },
+          {
+            "name": "coordinateSystem",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "data",
+            "in": "formData",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/point/data/list": {
+      "get": {
+        "tags": [
+          "Point-Data"
+        ],
+        "operationId": "getPointDataList",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/point/data/key/{fileName}/{version}": {
+      "get": {
+        "tags": [
+          "Point-Data"
+        ],
+        "operationId": "getPointDataKey",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "selectedProperty",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/point/data/read/{fileName}/{version}": {
+      "get": {
+        "tags": [
+          "Point-Data"
+        ],
+        "operationId": "getPointData",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/point/data/download/{fileName}/{version}": {
+      "get": {
+        "tags": [
+          "Point-Data"
+        ],
+        "operationId": "downloadPointData",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/point/data/remove/{fileName}/{version}": {
+      "delete": {
+        "tags": [
+          "Point-Data"
+        ],
+        "operationId": "removePointData",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/shp/common/create": {
+      "post": {
+        "tags": [
+          "Common-File"
+        ],
+        "operationId": "postCommonFile",
+        "consumes": [
+          "application/json",
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "bindingShpName",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "keyPropertyValue",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "isPublic",
+            "in": "formData",
+            "required": true,
+            "type": "boolean"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "commonfile",
+            "in": "formData",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/shp/common/list": {
+      "get": {
+        "tags": [
+          "Common-File"
+        ],
+        "operationId": "getCommonFileList",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/shp/common/download/{fileName}/{version}": {
+      "get": {
+        "tags": [
+          "Common-File"
+        ],
+        "operationId": "downloadCommonFile",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/shp/common/remove/{fileName}/{version}": {
+      "delete": {
+        "tags": [
+          "Common-File"
+        ],
+        "operationId": "removeCommonFile",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/shp/layer": {
+      "get": {
+        "tags": [
+          "Layer"
+        ],
+        "operationId": "getJoinedLayer",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fileNames",
+            "in": "query",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "versions",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/admin/data/list": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "getAllData",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/admin/pending-data/list": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "getPendingData",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/admin/user/list": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "getAllUsers",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/admin/pending-user/list": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "getPendingUsers",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/admin/pending-publish/list": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "getPendingPublish",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/admin/data/validate": {
+      "put": {
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "ValidateData",
+        "consumes": [
+          "application/x-www-form-urlencoded",
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/admin/user/validate": {
+      "put": {
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "ValidateUser",
+        "consumes": [
+          "application/x-www-form-urlencoded",
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/admin/publish/validate": {
+      "put": {
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "ValidatePublish",
+        "consumes": [
+          "application/json",
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "publishId",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "shapefiles",
+            "in": "formData",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/admin/data/cancel": {
+      "put": {
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "cancelDataApplication",
+        "consumes": [
+          "application/x-www-form-urlencoded",
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/admin/user/cancel": {
+      "put": {
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "cancelUserApplication",
+        "consumes": [
+          "application/x-www-form-urlencoded",
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/admin/publish/cancel": {
+      "put": {
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "cancelPublishApplication",
+        "consumes": [
+          "application/x-www-form-urlencoded",
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "publishId",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/user/register": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "postUser",
+        "consumes": [
+          "application/x-www-form-urlencoded",
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "displayName",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "role",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "department",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/user/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "login",
+        "consumes": [
+          "application/x-www-form-urlencoded",
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/user/delete/{username}": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "removeUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/backup": {
+      "post": {
+        "tags": [
+          "Backup"
+        ],
+        "operationId": "Backup",
+        "consumes": [
+          "application/x-www-form-urlencoded",
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/publish": {
+      "post": {
+        "tags": [
+          "Publish"
+        ],
+        "operationId": "publishService",
+        "consumes": [
+          "application/json",
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "arcgisUser",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "arcgisPassword",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "arcgisPortal",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "serviceName",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fileNames",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "shapefiles",
+            "in": "formData",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/publish/apply": {
+      "post": {
+        "tags": [
+          "Publish"
+        ],
+        "operationId": "applyPublish",
+        "consumes": [
+          "application/json",
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "arcgisUser",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "arcgisPassword",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "arcgisPortal",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "serviceName",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fileNames",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    },
+    "/api/publish/status": {
+      "get": {
+        "tags": [
+          "Publish"
+        ],
+        "operationId": "getPublishStatus",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "API not found"
+          },
+          "500": {
+            "description": "Internal exception"
+          }
+        }
+      }
+    }
+  }
+}

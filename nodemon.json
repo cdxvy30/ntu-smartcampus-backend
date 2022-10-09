@@ -1,0 +1,14 @@
+{
+  "restartable": "rs",
+  "verbose": true,
+  "exec": "babel-node ./src/app.js",
+  "watch": [
+    "server"
+  ],
+  "env": {
+    "NODE_ENV": "development",
+    "NODE_OPTIONS": "--max-old-space-size=8192"
+  },
+  "ignore": ["**/data/**", "**/log/**", "**/backup/**", "**/projects/**"],
+  "ext": "js,json"
+}
